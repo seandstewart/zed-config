@@ -20,8 +20,8 @@
   "autosave": "on_focus_change",
   "auto_update": true,
   "base_keymap": "JetBrains",
-  "ui_font_size": 12,
-  "buffer_font_size": 12,
+  "ui_font_size": 11,
+  "buffer_font_size": 10,
   "theme": {
     "mode": "system",
     "light": "One Light",
