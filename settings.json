@@ -99,7 +99,9 @@
         "disableOrganizeImports": true,
         "python.analysis": {
           "diagnosticMode": "workspace",
-          "typeCheckingMode": "off"
+          "typeCheckingMode": "off",
+          "reportInvalidTypeForm": false,
+          "ignore": ["tests/"]
         },
         "python": {
           "pythonPath": ".venv/bin/python"
@@ -160,10 +162,23 @@
           "enabled": true
         },
         "linter": {
-          "enabled": true
-        },
-        "rules": {
-          "recommended": true
+          "enabled": true,
+          "rules": {
+            "recommended": true
+          }
+        }
+      }
+    },
+    "yaml-language-server": {
+      "settings": {
+        "yaml": {
+          "customTags": ["!reference sequence"],
+          "schemas": {
+            "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json": [
+              ".gitlab-ci*.yaml",
+              ".gitlab-ci*.yml"
+            ]
+          }
         }
       }
     }
