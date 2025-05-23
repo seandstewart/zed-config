@@ -8,6 +8,10 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent": {
+    "default_model": {
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4-thinking-latest"
+    },
     "inline_assistant_model": {
       "provider": "google",
       "model": "gemini-2.5-pro-exp-03-25"

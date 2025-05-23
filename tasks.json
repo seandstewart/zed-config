@@ -1,0 +1,42 @@
+[
+  {
+    "label": "pytest $ZED_RELATIVE_FILE (custom)",
+    "command": "pytest",
+    "args": ["-v", "$ZED_RELATIVE_FILE"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "env": {
+      "VIRTUAL_ENV": "$ZED_WORKTREE_ROOT/.venv"
+    },
+    "tags": ["python-pytest-class", "python-pytest-method"]
+  },
+  {
+    "label": "pytest $ZED_RELATIVE_FILE::$ZED_SYMBOL (custom)",
+    "command": "pytest",
+    "args": ["-v", "$ZED_RELATIVE_FILE::$ZED_SYMBOL"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "env": {
+      "VIRTUAL_ENV": "$ZED_WORKTREE_ROOT/.venv"
+    },
+    "tags": ["python-pytest-class", "python-pytest-method"]
+  },
+  {
+    "label": "pytest $ZED_DIRNAME (custom)",
+    "command": "pytest",
+    "args": ["-v", "$ZED_DIRNAME"],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "env": {
+      "VIRTUAL_ENV": "$ZED_WORKTREE_ROOT/.venv"
+    },
+    "tags": ["python-pytest-class", "python-pytest-method"]
+  },
+  {
+    "label": "pytest project (custom)",
+    "command": "pytest",
+    "args": ["-v", "."],
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "env": {
+      "VIRTUAL_ENV": "$ZED_WORKTREE_ROOT/.venv"
+    },
+    "tags": ["python-pytest-class", "python-pytest-method"]
+  }
+]

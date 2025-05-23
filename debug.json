@@ -1,0 +1,46 @@
+[
+  {
+    "label": "Debug pytest $ZED_RELATIVE_FILE (current file)",
+    "request": "launch",
+    "adapter": "Debugpy",
+    "console": "integratedTerminal",
+    "purpose": ["debug-test"],
+    "module": "pytest",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "args": ["-v", "$ZED_RELATIVE_FILE"],
+    "python": "$ZED_WORKTREE_ROOT/.venv/bin/python"
+  },
+  {
+    "label": "Debug pytest $ZED_RELATIVE_FILE::$ZED_SYMBOL (custom)",
+    "request": "launch",
+    "adapter": "Debugpy",
+    "console": "integratedTerminal",
+    "purpose": ["debug-test"],
+    "module": "pytest",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "args": ["-v", "$ZED_RELATIVE_FILE::$ZED_SYMBOL"],
+    "python": "$ZED_WORKTREE_ROOT/.venv/bin/python"
+  },
+  {
+    "label": "Debug pytest $ZED_DIRNAME (custom)",
+    "request": "launch",
+    "adapter": "Debugpy",
+    "console": "integratedTerminal",
+    "purpose": ["debug-test"],
+    "module": "pytest",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "args": ["-v", "$ZED_DIRNAME"],
+    "python": "$ZED_WORKTREE_ROOT/.venv/bin/python"
+  },
+  {
+    "label": "Debug pytest project (custom)",
+    "request": "launch",
+    "adapter": "Debugpy",
+    "console": "integratedTerminal",
+    "purpose": ["debug-test"],
+    "module": "pytest",
+    "cwd": "$ZED_WORKTREE_ROOT",
+    "args": ["-v", "."],
+    "python": "$ZED_WORKTREE_ROOT/.venv/bin/python"
+  }
+]
