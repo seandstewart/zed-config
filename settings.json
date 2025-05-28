@@ -186,5 +186,13 @@
         }
       }
     }
+  },
+  "file_types": {
+    "Helm": [
+      "**/templates/**/*.tpl",
+      "**/templates/**/*.yaml",
+      "**/templates/**/*.yml",
+      "**/*Charts/**/values*.yaml"
+    ]
   }
 }
