@@ -10,16 +10,16 @@
   "agent": {
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4-thinking-latest"
+      "model": "claude-sonnet-4-thinking"
     },
     "inline_assistant_model": {
-      "provider": "google",
-      "model": "gemini-2.5-pro-exp-03-25"
+      "provider": "zed.dev",
+      "model": "claude-sonnet-4"
     },
     "version": "2"
   },
   "features": {
-    "edit_prediction_provider": "none"
+    "edit_prediction_provider": "zed"
   },
   "autosave": "on_focus_change",
   "auto_update": true,
@@ -101,11 +101,13 @@
     "pyright": {
       "settings": {
         "disableOrganizeImports": true,
+        "autoImportCompletions": true,
         "python.analysis": {
           "diagnosticMode": "workspace",
           "typeCheckingMode": "off",
           "reportInvalidTypeForm": false,
-          "ignore": ["tests/"]
+          "ignore": ["tests/"],
+          "autoSearchPaths": true
         },
         "python": {
           "pythonPath": ".venv/bin/python"
@@ -114,6 +116,7 @@
     },
     "pylsp": {
       "settings": {
+        // https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
         "plugins": {
           "pycodestyle": {
             "enabled": false
@@ -128,34 +131,29 @@
             "enabled": true
           },
           "jedi_completion": {
-            "enabled": true,
-            "eager": true,
-            "fuzzy": true,
-            "include_params": true,
-            "include_class_objects": true,
-            "include_function_objects": true
+            "enabled": false
           },
           "jedi_definition": {
-            "enabled": true
+            "enabled": false
           },
           "jedi_hover": {
-            "enabled": true
+            "enabled": false
           },
           "jedi_references": {
-            "enabled": true
+            "enabled": false
           },
           "jedi_signature_help": {
-            "enabled": true
+            "enabled": false
           },
           "jedi_symbols": {
             "enabled": true
           },
           "rope_autoimport": {
-            "enabled": true
+            "enabled": false
           },
           "rope_completion": {
-            "enabled": true,
-            "eager": false
+            "enabled": false,
+            "eager": true
           }
         }
       }
@@ -181,6 +179,10 @@
             "https://gitlab.com/gitlab-org/gitlab/-/raw/master/app/assets/javascripts/editor/schema/ci.json": [
               ".gitlab-ci*.yaml",
               ".gitlab-ci*.yml"
+            ],
+            "https://spec.openapis.org/oas/3.1/schema/2025-02-13": [
+              "**/*/openapi.yaml",
+              "**/*/openapi.yml"
             ]
           }
         }
@@ -193,6 +195,8 @@
       "**/templates/**/*.yaml",
       "**/templates/**/*.yml",
       "**/*Charts/**/values*.yaml"
-    ]
+    ],
+    "INI": ["**/*/*.properties", "**/*/\\..*rc"],
+    "markdown": ["*.md", "*.mdc", ".rules"]
   }
 }

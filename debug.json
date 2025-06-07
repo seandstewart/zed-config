@@ -1,6 +1,6 @@
 [
   {
-    "label": "Debug pytest $ZED_RELATIVE_FILE (current file)",
+    "label": "Debug pytest $ZED_RELATIVE_FILE (custom)",
     "request": "launch",
     "adapter": "Debugpy",
     "console": "integratedTerminal",
@@ -22,14 +22,14 @@
     "python": "$ZED_WORKTREE_ROOT/.venv/bin/python"
   },
   {
-    "label": "Debug pytest $ZED_DIRNAME (custom)",
+    "label": "Debug pytest $ZED_RELATIVE_DIR (custom)",
     "request": "launch",
     "adapter": "Debugpy",
     "console": "integratedTerminal",
     "purpose": ["debug-test"],
     "module": "pytest",
     "cwd": "$ZED_WORKTREE_ROOT",
-    "args": ["-v", "$ZED_DIRNAME"],
+    "args": ["-v", "$ZED_RELATIVE_DIR"],
     "python": "$ZED_WORKTREE_ROOT/.venv/bin/python"
   },
   {
