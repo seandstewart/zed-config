@@ -183,6 +183,9 @@
             "https://spec.openapis.org/oas/3.1/schema/2025-02-13": [
               "**/*/openapi.yaml",
               "**/*/openapi.yml"
+            ],
+            "https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json": [
+              "**/*/*_test.yaml"
             ]
           }
         }
