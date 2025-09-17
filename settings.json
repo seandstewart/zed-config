@@ -8,21 +8,25 @@
 // command palette (cmd-shift-p / ctrl-shift-p)
 {
   "agent": {
+    "always_allow_tool_actions": true,
+    "default_profile": "write",
     "default_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4-thinking"
+      "model": "claude-opus-4-1-thinking"
     },
     "inline_assistant_model": {
       "provider": "zed.dev",
-      "model": "claude-sonnet-4"
-    },
-    "version": "2"
+      "model": "claude-sonnet-4-thinking"
+    }
   },
   "features": {
     "edit_prediction_provider": "zed"
   },
   "autosave": "on_focus_change",
   "auto_update": true,
+  "use_autoclose": true,
+  "use_auto_surround": true,
+  "always_treat_brackets_as_autoclosed": true,
   "base_keymap": "JetBrains",
   "ui_font_size": 11,
   "buffer_font_size": 10,
@@ -31,6 +35,7 @@
     "light": "One Light",
     "dark": "One Dark"
   },
+  "load_direnv": "shell_hook",
   "auto_install_extensions": {
     // https://zed.dev/docs/languages/bash
     "basher": true,
@@ -58,11 +63,13 @@
     // https://zed.dev/docs/languages/toml
     "toml": true,
     // https://github.com/zed-industries/zed
-    "ruff": true
+    "ruff": true,
+    // https://github.com/zed-extensions/ty
+    "ty": true
   },
   "languages": {
     "Python": {
-      "language_servers": ["pyright", "pylsp", "ruff"],
+      "language_servers": ["ty", "pyright", "ruff"],
       "format_on_save": "on",
       "formatter": [
         {
@@ -81,6 +88,8 @@
       ]
     },
     "SQL": {
+      "use_auto_surround": true,
+      "use_autoclose": true,
       "language_servers": [
         "postgres-language-server",
         "postgres-context-server",
@@ -95,6 +104,21 @@
           }
         }
       ]
+    },
+    "Helm": {
+      "use_auto_surround": true,
+      "use_autoclose": true,
+      "tab_size": 2
+    },
+    "YAML": {
+      "use_auto_surround": true,
+      "use_autoclose": true,
+      "tab_size": 2
+    },
+    "JSON": {
+      "use_auto_surround": true,
+      "use_autoclose": true,
+      "tab_size": 2
     }
   },
   "lsp": {
@@ -104,8 +128,8 @@
         "autoImportCompletions": true,
         "python.analysis": {
           "diagnosticMode": "workspace",
-          "typeCheckingMode": "off",
-          "reportInvalidTypeForm": false,
+          "typeCheckingMode": "on",
+          "reportInvalidTypeForm": true,
           "ignore": ["tests/"],
           "autoSearchPaths": true
         },
@@ -114,61 +138,10 @@
         }
       }
     },
-    "pylsp": {
-      "settings": {
-        // https://github.com/python-lsp/python-lsp-server/blob/develop/CONFIGURATION.md
-        "plugins": {
-          "pycodestyle": {
-            "enabled": false
-          },
-          "pyflakes": {
-            "enabled": false
-          },
-          "pylint": {
-            "enabled": false
-          },
-          "mypy": {
-            "enabled": true
-          },
-          "jedi_completion": {
-            "enabled": false
-          },
-          "jedi_definition": {
-            "enabled": false
-          },
-          "jedi_hover": {
-            "enabled": false
-          },
-          "jedi_references": {
-            "enabled": false
-          },
-          "jedi_signature_help": {
-            "enabled": false
-          },
-          "jedi_symbols": {
-            "enabled": true
-          },
-          "rope_autoimport": {
-            "enabled": false
-          },
-          "rope_completion": {
-            "enabled": false,
-            "eager": true
-          }
-        }
-      }
-    },
-    "postgres-language-server": {
-      "settings": {
-        "vcs": {
-          "enabled": true
-        },
-        "linter": {
-          "enabled": true,
-          "rules": {
-            "recommended": true
-          }
-        }
+    "ty": {
+      "binary": {
+        "path": "/Users/seanstewart/.local/bin/ty",
+        "arguments": ["server"]
       }
     },
     "yaml-language-server": {
@@ -181,12 +154,41 @@
               ".gitlab-ci*.yml"
             ],
             "https://spec.openapis.org/oas/3.1/schema/2025-02-13": [
-              "**/*/openapi.yaml",
-              "**/*/openapi.yml"
+              "**/openapi.yaml",
+              "**/openapi.yml"
             ],
             "https://raw.githubusercontent.com/helm-unittest/helm-unittest/main/schema/helm-testsuite.json": [
-              "**/*/*_test.yaml"
+              "**/*_test.yaml"
             ]
+          }
+        }
+      }
+    },
+    "helm_ls": {
+      "settings": {
+        "helm-ls": {
+          "yamlls": {
+            "enabled": true,
+            "config": {
+              "schemas": {
+                "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/iam.cnrm.cloud.google.com/iamaccessboundarypolicy_v1beta1.json": [
+                  "**/*iamAccessBoundaryPolicy.yaml",
+                  "**/*IamAccessBoundaryPolicy.yaml"
+                ],
+                "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/iam.cnrm.cloud.google.com/iampolicy_v1beta1.json": [
+                  "**/*iamPolicy.yaml",
+                  "**/*IamPolicy.yaml"
+                ],
+                "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/iam.cnrm.cloud.google.com/iampolicymember_v1beta1.json": [
+                  "**/*iamPolicyMember.yaml",
+                  "**/*IamPolicyMember.yaml"
+                ],
+                "https://raw.githubusercontent.com/datreeio/CRDs-catalog/refs/heads/main/iam.cnrm.cloud.google.com/iamserviceaccount_v1beta1.json": [
+                  "**/*iamServiceAccount.yaml",
+                  "**/*IamServiceAccount.yaml"
+                ]
+              }
+            }
           }
         }
       }
@@ -197,9 +199,22 @@
       "**/templates/**/*.tpl",
       "**/templates/**/*.yaml",
       "**/templates/**/*.yml",
-      "**/*Charts/**/values*.yaml"
+      "**/*Charts/**/*.yaml"
     ],
-    "INI": ["**/*/*.properties", "**/*/\\..*rc"],
-    "markdown": ["*.md", "*.mdc", ".rules"]
+    "JSON": ["*.json", "devenv.lock"],
+    "INI": ["**/*.properties", "**/.*rc", "*.sqlfluff"],
+    "markdown": ["*.md", "*.mdc", ".rules"],
+    "Dockerfile": ["Dockerfile", "Dockerfile.*"],
+    "Make": ["Makefile", "Makefile.*", "*Makefile"],
+    "Just": ["justfile", "justfile.*", "*.justfile"],
+    "Shell Script": [
+      "*.sh",
+      "*.zsh",
+      ".bash*",
+      "*.bash",
+      "*.*rc",
+      "*.*rc.*",
+      "**/envrc.*"
+    ]
   }
 }
